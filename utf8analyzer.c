@@ -4,6 +4,12 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+void length_of_string(const char str[]) {
+	int length = strlen(str);
+	printf("Length in bytes: %d\n", length);
+
+}
+
 void to_uppercase(char str[]) {
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] >= 'a' && str[i] <= 'z') {
@@ -34,6 +40,9 @@ int main(int argc, char *argv[]) {
 
     if(is_ascii(argv[1])) { printf("All characters are valid ASCII.\n");}
     else{printf("String contains non-ASCII characters.\n");}
+
+    //Length in bytes
+    length_of_string(argv[1]);
 
     // implement the UTF-8 analyzer here 
 
