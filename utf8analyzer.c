@@ -90,12 +90,12 @@ int main(int argc, char *argv[]) {
     // implement the UTF-8 analyzer here
 	
 
-    // Uppercase 
+    // 1. Whether the String is valid ASCII  
 
     if(is_ascii(argv[1])) { printf("All characters are valid ASCII.\n");}
     else{printf("String contains non-ASCII characters.\n");}
 
-    //Length in bytes
+    // 3.) Length of the whole string in bytes.
     length_of_string(argv[1]);
 
     // implement the UTF-8 analyzer here 
