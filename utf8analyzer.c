@@ -61,6 +61,16 @@ bool is_ascii(const char str[]) {
 	return true;
 }
 
+void print_decimal_codepoints(const char str[]) {
+    int i = 0;
+    while (str[i] != '\0') {
+        int len;
+        uint32_t cp = utf8_decode(&str[i], &len);
+        printf("%u\n", cp);
+        i += len;
+    }
+}
+
 
 
 int main(int argc, char *argv[]) {
