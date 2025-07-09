@@ -43,6 +43,14 @@ void length_of_string(const char str[]) {
 
 }
 
+int size_of_codepoint(char c) {
+    if((c & 0b10000000) == 0b00000000) { return 1; }
+    if((c & 0b11100000) == 0b11000000) { return 2; }
+    if((c & 0b11110000) == 0b11100000) { return 3; }
+    if((c & 0b11111000) == 0b11110000) { return 4; }
+    return -1;
+}
+
 void to_uppercase(char str[]) {
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] >= 'a' && str[i] <= 'z') {
@@ -91,5 +99,56 @@ int main(int argc, char *argv[]) {
     length_of_string(argv[1]);
 
     // implement the UTF-8 analyzer here 
+   // 4. The number of UTF-8 codepoints represented by the string
+   int numOfCodepoints = 0;
+   for (int i = 0; i < strlen(argv[1]); ) {
+        numOfCodepoints++;
+        i += size_of_codepoint(argv[1][i]);
+   }
+   printf("Number of code points: %d\n", numOfCodepoints);
 
+   // 6. How many bytes are used to represent each codepoint
+   char numOfBytes[numOfCodepoints + 1];
+   numOfBytes[numOfCodepoints] = '\0';
+   int idx = 0;
+   for (int i = 0; i < strlen(argv[1];)) {
+        int size = size_of_codepoint(argv[1][i]);
+        numOfBytes[idx] = (char) size;
+        i += size;
+   }
+   printf("Bytes per code point: %s\n", numOfBytes);
+
+   // 7. Substring of the input string containing only the first 6 codepoints
+   char substring[24];
+   int idx = 0;
+   int i = 0;
+   numOfCodepoints = 0;
+   int len = strlen(argv[1]);
+   while (numOfCodepoints < 6 && i < len) {
+        int cp = size_of_codepoint(argv[1][i]);
+        for (int j = 0; j < cp; j++) {
+            substring[idx++] = argv[1][i + j];
+        }
+        i += cp;
+        numOfCodepoints++;
+   }
+   substring[idx] = '\0';
+   printf("Substring of the first 6 code points: \"%s\"\n", substring);
+   
+   // 8. All animal emojis in the input string
+   printf("Animal emojis: ");
+   i = 0;
+   char emoji[5];
+
+   while (i < len) {
+        int cp = 0;
+        uint32_t code_point = utf8_decode(&argv[1][i], &cp);
+        if (is_animal_emoji(code_point)) {
+                memcpy(emoji, &argv[1][i], cp);
+                emoji[cp] = '\0';
+                printf("%s ", emoji);
+        }
+
+        i += cp;
+   }
 }
