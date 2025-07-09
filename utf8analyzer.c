@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-
 void to_uppercase(char str[]) {
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] >= 'a' && str[i] <= 'z') {
@@ -12,7 +11,15 @@ void to_uppercase(char str[]) {
         }
     }
 
-
+bool is_ascii(const char str[]) {
+	for(int i = 0; str[i] != '\0'; i++) {
+		if((unsigned char)str[i] > 127) {
+			return false;
+		}
+	
+	}
+	return true;
+}
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -24,4 +31,10 @@ int main(int argc, char *argv[]) {
 	
 
     // Uppercase 
+
+    if(is_ascii(argv[1])) { printf("All characters are valid ASCII.\n");}
+    else{printf("String contains non-ASCII characters.\n");}
+
+    // implement the UTF-8 analyzer here 
+
 }
