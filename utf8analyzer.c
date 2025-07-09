@@ -49,6 +49,7 @@ void to_uppercase(char str[]) {
             str[i] = str[i] - 32;
         }
     }
+}
 
 bool is_ascii(const char str[]) {
 	for(int i = 0; str[i] != '\0'; i++) {
@@ -59,6 +60,14 @@ bool is_ascii(const char str[]) {
 	}
 	return true;
 }
+
+
+void codepoint_to_decimal(
+	int count = 0; 
+	int i = 0;
+	while (str[i] != '\0'){
+		int bytes = //need  
+		i += bytes
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
