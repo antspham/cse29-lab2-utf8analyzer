@@ -52,6 +52,7 @@ int size_of_codepoint(char c) {
 }
 
 void to_uppercase(char str[]) {
+
     for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] >= 'a' && str[i] <= 'z') {
             str[i] = str[i] - 32;
@@ -90,7 +91,11 @@ int main(int argc, char *argv[]) {
     // implement the UTF-8 analyzer here
 	
 
-    // 1. Whether the String is valid ASCII  
+    // 1. Whether the String is valid ASCII 
+    
+   if(argc < 2) { printf("Usage: %s <utf8-string>\n", argv[0]);
+	  return 1;
+   } 
 
     if(is_ascii(argv[1])) { printf("All characters are valid ASCII.\n");}
     else{printf("String contains non-ASCII characters.\n");}
