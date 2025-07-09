@@ -62,12 +62,6 @@ bool is_ascii(const char str[]) {
 }
 
 
-void codepoint_to_decimal(
-	int count = 0; 
-	int i = 0;
-	while (str[i] != '\0'){
-		int bytes = //need  
-		i += bytes
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
